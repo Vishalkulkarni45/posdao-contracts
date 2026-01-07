@@ -12,7 +12,8 @@ iterate_sources() {
     for FILE in "$FULLPATH""$1"*.sol; do
         [ -f "$FILE" ] || break
         echo $FILE
-        ./node_modules/.bin/poa-solidity-flattener $FILE $2
+        mkdir -p "$2"
+        ./node_modules/.bin/truffle-flattener "$FILE" > "$2$(basename "$FILE")"
     done
 }
 
